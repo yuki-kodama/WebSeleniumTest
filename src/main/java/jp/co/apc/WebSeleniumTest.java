@@ -8,7 +8,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 public class WebSeleniumTest {
 
 	// use proxy -> true.
-	private static final boolean PROXY_USE = true;
+	private static final boolean PROXY_USE = false;
 	private static final String PROXY = "proxy.xxxx.jp:8080";
 
 	private static final String JSESSIONID = "jsessionid";
@@ -26,7 +26,7 @@ public class WebSeleniumTest {
 		}
 	}
 
-	public void execute(String number) {
+	public void execute(final String number) {
 		HtmlUnitDriver driver = new HtmlUnitDriver(true);
 		driver.setProxySettings(PROXY_USE ? this.createProxy() : null);
 		driver.get(TOP_REDIRECT);
@@ -50,7 +50,7 @@ public class WebSeleniumTest {
 		return proxy;
 	}
 
-	Cookie createCookie(String source) {
+	Cookie createCookie(final String source) {
 		int i = source.indexOf(JSESSIONID);
 		return new Cookie(JSESSIONID, source.substring(i + 11, i + 51));
 	}
