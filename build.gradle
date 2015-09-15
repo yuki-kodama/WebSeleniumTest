@@ -1,0 +1,30 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: "eclipse"
+
+
+def javaVersion = '1.8'
+def defaultEncoding = 'UTF-8'
+def seleniumJavaVersion = '2.47.1'
+
+version = '1.0'
+sourceCompatibility = javaVersion
+targetCompatibility = javaVersion
+
+mainClassName = 'jp.co.apc.WebSeleniumTest'
+
+repositories {
+	mavenCentral()
+	maven { url "http://maven.seasar.org/maven2" }
+	maven { url "https://repository.jboss.org/nexus/content/groups/public/" }
+}
+
+dependencies {
+	compile group: 'org.seleniumhq.selenium', name: 'selenium-htmlunit-driver', version: seleniumJavaVersion, ext: 'jar', transitive: true
+	compile group: 'org.jsoup', name: 'jsoup', version: '1.8.3', ext: 'jar', transitive: true
+	
+	runtime group: 'org.seleniumhq.selenium', name: 'selenium-htmlunit-driver', version: seleniumJavaVersion, ext: 'jar', transitive: true
+	runtime group: 'org.jsoup', name: 'jsoup', version: '1.8.3', ext: 'jar', transitive: true
+    
+	testCompile group: 'junit', name: 'junit', version: '4.+', ext: 'jar'
+}
